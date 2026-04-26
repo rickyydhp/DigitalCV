@@ -1,0 +1,401 @@
+/* Konfigurasi Variabel Warna */
+:root {
+    --primary-color: #6366f1; /* Indigo yang lebih modern */
+    --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    --bg-color: #f8fafc;
+    --text-color: #0f172a;
+    --card-bg: #ffffff;
+    --nav-bg: rgba(99, 102, 241, 0.9);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Variabel Dark Mode */
+[data-theme="dark"] {
+    --bg-color: #020617;
+    --text-color: #f1f5f9;
+    --card-bg: #1e293b;
+    --nav-bg: rgba(30, 41, 59, 0.8);
+}
+
+/* Reset Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: var(--transition);
+    line-height: 1.7;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Navigasi */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 10%;
+    background: var(--nav-bg);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px); /* Efek Glassmorphism */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+/* Language Switcher */
+.lang-switch {
+    display: flex;
+    gap: 5px;
+    margin-right: 15px;
+}
+
+.lang-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 2px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.lang-btn.active {
+    background: white;
+    color: var(--primary-color);
+}
+
+#theme-toggle {
+    background: none;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
+/* Hero Section */
+.hero {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Bentuk organik agar tidak membosankan */
+    border: 6px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 1.5rem;
+    object-fit: cover;
+    animation: morph 8s ease-in-out infinite;
+}
+
+@keyframes morph {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+}
+
+.hero-btns {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 32px;
+    background: var(--primary-gradient);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.4);
+}
+
+/* Pengaturan khusus untuk tombol di area Hero agar berwarna putih & profesional */
+.hero-btns .btn {
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid white;
+}
+
+.hero-btns .btn:hover {
+    background: transparent;
+    color: white;
+}
+
+.btn-outline {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.hero-btns .btn-outline:hover {
+    background: white;
+    color: var(--primary-color);
+}
+
+/* Layout Kontainer */
+.container {
+    padding: 5rem 10%;
+}
+
+.bg-light {
+    background-color: var(--card-bg);
+}
+
+/* Timeline & Experience Styles */
+.timeline, .experience-card {
+    margin-top: 2rem;
+}
+
+.timeline-item, .experience-card {
+    padding: 1.5rem;
+    border-left: 5px solid var(--primary-color);
+    background: var(--bg-color);
+    margin-bottom: 1.5rem;
+    border-radius: 0 16px 16px 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.institution, .company {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.period {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.exp-list {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    padding-left: 1.2rem;
+}
+
+.exp-list li {
+    margin-bottom: 5px;
+    list-style-type: disc;
+}
+
+/* Skills Grid Layout */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.soft-skills-list {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.soft-skills-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+[data-theme="dark"] .soft-skills-list li {
+    border-bottom-color: #374151;
+}
+
+/* Keahlian (Progress Bar) */
+.skill-item {
+    margin-bottom: 1.5rem;
+}
+
+.progress-bar {
+    background: #e5e7eb;
+    border-radius: 10px;
+    height: 12px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.progress {
+    background: var(--primary-color);
+    height: 100%;
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+}
+
+/* Filter Buttons */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    padding: 10px 25px;
+    border: 2px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    cursor: pointer;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.project-card.hide {
+    display: none;
+}
+
+/* Portfolio Grid */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 2rem;
+}
+
+.project-card {
+    background: var(--bg-color);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+.project-links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 15px;
+}
+
+.project-links a {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* Animasi Reveal on Scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .container { padding: 3rem 5%; }
+}
+
+/* Staggered Delay untuk Kartu Portfolio */
+.project-card.active:nth-child(1) { transition-delay: 0.1s; }
+.project-card.active:nth-child(2) { transition-delay: 0.3s; }
+.project-card.active:nth-child(3) { transition-delay: 0.5s; }
+
+/* Staggered Delay untuk Elemen Hero */
+.hero-content > .reveal.active:nth-child(1) { transition-delay: 0.1s; } /* Foto */
+.hero-content > .reveal.active:nth-child(2) { transition-delay: 0.3s; } /* Nama */
+.hero-content > .reveal.active:nth-child(3) { transition-delay: 0.5s; } /* Tagline */
+.hero-content > .reveal.active:nth-child(4) { transition-delay: 0.7s; } /* Tombol */
+
+.contact-info {
+    margin-bottom: 2.5rem;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.contact-info i {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    width: 25px;
+    text-align: center;
+}
+
+.contact-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}

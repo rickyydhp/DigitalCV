@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Profesional & Sistem Informasi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <nav>
+        <div class="logo">DigitalCV</div>
+        <ul class="nav-links">
+            <li><a href="#about" data-i18n="nav_about">Tentang</a></li>
+            <li><a href="#education" data-i18n="nav_edu">Pendidikan</a></li>
+            <li><a href="#experience" data-i18n="nav_exp">Pengalaman</a></li>
+            <li><a href="#skills" data-i18n="nav_skills">Keahlian</a></li>
+            <li><a href="#portfolio" data-i18n="nav_port">Proyek</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Kontak</a></li>
+        </ul>
+        <div class="lang-switch">
+            <button class="lang-btn active" id="lang-id">ID</button>
+            <button class="lang-btn" id="lang-en">EN</button>
+        </div>
+        <button id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <img src="foto/foto_CV.jpeg" alt="Foto Profil" class="profile-img">
+            <h1><span data-i18n="hero_greeting">Halo</span>, <span data-i18n="hero_intro">Saya</span> Ricky Yudha Pratama</h1>
+            <p class="tagline" data-i18n="hero_tagline">Information Systems Student | Specialist in Parking Management Systems</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn" data-i18n="hero_btn_contact">Hubungi Saya</a>
+                <a href="file cv/CV_ats Ricky Yudha Pratama.pdf" class="btn btn-outline" download data-i18n="hero_btn_cv">Unduh CV (PDF)</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="container">
+        <h2 data-i18n="about_h2">Tentang Saya</h2>
+        <div class="about-content">
+            <p data-i18n="about_p1">
+                Saya merupakan lulusan SMK Asy Syifa jurusan Rekayasa Perangkat Lunak yang saat ini aktif menempuh pendidikan S1 Sistem Informasi di Institut Teknologi Bisnis & Bahasa Dian Cipta Cendekia. Memiliki ketertarikan kuat di bidang teknologi informasi, saya terbiasa belajar hal baru, beradaptasi dengan cepat, serta terus mengembangkan kemampuan baik secara teknis maupun non-teknis. Saya adalah pribadi yang terbuka terhadap pengalaman baru, memiliki motivasi tinggi untuk berkembang, dan siap memberikan kontribusi terbaik dalam lingkungan kerja profesional.
+            </p>
+        </div>
+    </section>
+
+    <section id="education" class="container bg-light">
+        <h2 data-i18n="edu_h2">Pendidikan</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3 data-i18n="edu_s1">S1 Sistem Informasi</h3>
+                <p class="institution">Institut Teknologi Bisnis & Bahasa Dian Cipta Cendekia</p>
+                <p class="period" data-i18n="edu_s1_period">2024 - Sekarang</p>
+            </div>
+            <div class="timeline-item">
+                <h3 data-i18n="edu_smk">Rekayasa Perangkat Lunak</h3>
+                <p class="institution">SMK ASY-SYIFA</p>
+                <p class="period">2018 - 2021</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="container">
+        <h2 data-i18n="exp_h2">Pengalaman Kerja</h2>
+        <div class="experience-card">
+            <div class="exp-header">
+                <h3>Car Part Manager</h3>
+                <p class="company">PT Rapik Karya Mandiri</p>
+            </div>
+            <ul class="exp-list">
+                <li data-i18n="exp_l1">Mengelola operasional parkir harian dan memastikan kepatuhan ketat terhadap SOP perusahaan.</li>
+                <li data-i18n="exp_l2">Mengatur lalu lintas kendaraan dan mengoptimalkan pemanfaatan area parkir.</li>
+                <li data-i18n="exp_l3">Memimpin tim operasional, menyusun jadwal kerja, dan memberikan pelatihan rutin kepada staf.</li>
+                <li data-i18n="exp_l4">Bertanggung jawab penuh atas laporan pendapatan harian dan pengelolaan arus kas (cash management).</li>
+                <li data-i18n="exp_l5">Memastikan sistem integrasi parkir dan infrastruktur keamanan (CCTV) berfungsi optimal.</li>
+                <li data-i18n="exp_l6">Menangani dan menyelesaikan keluhan pelanggan dengan pendekatan profesional.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="skills" class="container bg-light">
+        <h2 data-i18n="skills_h2">Kemampuan</h2>
+        <div class="skills-grid">
+            <div class="skill-column">
+                <h3 data-i18n="skills_hard">Hard Skill</h3>
+                <div class="skill-item">
+                    <span data-i18n="skill_mgt">Dasar Manajemen Sistem & Operasional</span>
+                    <div class="progress-bar"><div class="progress" data-width="90%" style="width: 0;"></div></div>
+                </div>
+                <div class="skill-item">
+                    <span data-i18n="skill_excel">Microsoft Excel (Reporting Data)</span>
+                    <div class="progress-bar"><div class="progress" data-width="85%" style="width: 0;"></div></div>
+                </div>
+                <div class="skill-item">
+                    <span data-i18n="skill_trouble">Troubleshooting (CCTV / Sistem Parkir)</span>
+                    <div class="progress-bar"><div class="progress" data-width="80%" style="width: 0;"></div></div>
+                </div>
+            </div>
+            <div class="skill-column">
+                <h3 data-i18n="skills_soft">Soft Skill</h3>
+                <ul class="soft-skills-list">
+                    <li data-i18n="soft_l1">Problem solving</li>
+                    <li data-i18n="soft_l2">Cepat belajar teknologi baru</li>
+                    <li data-i18n="soft_l3">Adaptif terhadap sistem baru</li>
+                    <li data-i18n="soft_l4">Komunikasi tim yang baik</li>
+                    <li data-i18n="soft_l5">Berpikir analitis</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="container">
+        <h2 data-i18n="port_h2">Proyek Pilihan</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all" data-i18n="port_all">Semua</button>
+            <button class="filter-btn" data-filter="data">Data</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+        </div>
+
+        <div class="project-grid">
+            <div class="project-card" data-category="data">
+                <h3 data-i18n="port_p1_h3">Sistem Pelaporan Pendapatan Parkir</h3>
+                <p data-i18n="port_p1_p">Aplikasi berbasis web untuk mengotomatisasi laporan keuangan parkir harian, mengurangi kesalahan input manual secara signifikan.</p>
+                <div class="project-links">
+                    <span style="font-style: italic; color: #6b7280; font-size: 0.9rem;" data-i18n="port_p1_dev">Masih dalam tahap pengembangan</span>
+                </div>
+            </div>
+            <div class="project-card" data-category="web">
+                <h3 data-i18n="port_p2_h3">Web Personal Branding</h3>
+                <p data-i18n="port_p2_p">Website portfolio interaktif ini dibangun menggunakan Vanilla CSS dan JavaScript untuk menunjukkan kemampuan front-end.</p>
+                <div class="project-links">
+                    <a href="https://rickyydhp.github.io/rombakan3/" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> <span data-i18n="port_p2_link">Lihat Proyek</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <h2 data-i18n="cont_h2">Kontak</h2>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:ricky.cihernak@email.com">ricky.cihernak@email.com</a></p>
+            <p><i class="fab fa-instagram"></i> <strong>Instagram:</strong> 
+                <a href="https://www.instagram.com/rickyydhp/" target="_blank" rel="noopener noreferrer">@rickyydhp</a>
+            </p>
+        </div>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name" data-i18n="cont_label_name">Nama Lengkap</label>
+                <input type="text" id="name" placeholder="Masukkan nama Anda" required data-i18n="cont_ph_name">
+            </div>
+            <div class="form-group">
+                <label for="email" data-i18n="cont_label_email">Alamat Email</label>
+                <input type="email" id="email" placeholder="email@contoh.com" required data-i18n="cont_ph_email">
+            </div>
+            <div class="form-group">
+                <label for="message" data-i18n="cont_label_msg">Pesan</label>
+                <textarea id="message" placeholder="Apa yang bisa saya bantu?" required data-i18n="cont_ph_msg"></textarea>
+            </div>
+            <button type="submit" class="btn" data-i18n="cont_btn_send">Kirim Pesan</button>
+        </form>
+    </section>
+
+    <footer>
+        <p data-i18n="footer_text">&copy; 2026 RICKY YUDHA PRATAMA. Dibuat Untuk Tugas Web Programming.</p>
+    </footer>
+</body>
+</html>
