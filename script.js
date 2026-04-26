@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cont_label_msg: "Pesan",
             cont_ph_msg: "Apa yang bisa saya bantu?",
             cont_btn_send: "Kirim Pesan",
-            footer_text: "© 2022 RICKY YUDHA PRATAMA. DO NOT COPY THIS WEBSITE.",
+            footer_text: "© 2026 RICKY YUDHA PRATAMA. Dibuat Untuk Tugas Web Programming.",
             cont_wa: "WhatsApp"
         },
         en: {
@@ -177,23 +177,35 @@ document.addEventListener('DOMContentLoaded', () => {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const message = document.getElementById('message').value.trim();
-
-        if (name === "" || email === "" || message === "") {
-            alert("Mohon lengkapi semua data sebelum mengirim.");
-            return;
-        }
-
-        // Feedback yang lebih elegan
-        const successMsg = document.createElement('p');
-        successMsg.className = 'form-success';
-        successMsg.textContent = `Terima kasih ${name}, pesan Anda telah terkirim!`;
-        contactForm.appendChild(successMsg);
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
         
-        contactForm.reset();
-        setTimeout(() => successMsg.remove(), 5000);
+        // Indikator Loading
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Mengirim...";
+
+        // Kirim ke Formspree (Ganti ID ini setelah daftar di formspree.io)
+        fetch("https://formspree.io/f/YOUR_FORM_ID", {
+            method: "POST",
+            body: new FormData(contactForm),
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                const successMsg = document.createElement('p');
+                successMsg.className = 'form-success';
+                successMsg.textContent = `Terima kasih, pesan Anda telah masuk ke Gmail saya!`;
+                contactForm.appendChild(successMsg);
+                contactForm.reset();
+                setTimeout(() => successMsg.remove(), 5000);
+            } else {
+                alert("Maaf, terjadi kesalahan saat mengirim.");
+            }
+        }).catch(() => {
+            alert("Terjadi kesalahan koneksi.");
+        }).finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        });
     });
 
     // 4. Sistem Filter Portofolio
@@ -288,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 9. ScrollSpy: Highlight Nav Links on Scroll
     const navLinksList = document.querySelectorAll('.nav-links a');
-    const sections = document.querySelectorAll('section');
+    const sections = document.querySelectorAll('header, section');
 
     window.addEventListener('scroll', () => {
         let current = '';

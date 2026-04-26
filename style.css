@@ -328,10 +328,11 @@ nav {
 }
 
 .cert-icon {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     display: block;
+    transition: var(--transition);
 }
 
 /* Skills Grid Layout */
