@@ -249,4 +249,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Muat bahasa dari preferensi sebelumnya
     const savedLang = localStorage.getItem('language') || 'id';
     setLanguage(savedLang);
+
+    // 6. Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+
+    // Tutup menu saat link diklik (untuk mobile)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
 });
