@@ -13,6 +13,11 @@
 <body>
     <nav>
         <div class="logo">DigitalCV</div>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Open Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <ul class="nav-links">
             <li><a href="#about" data-i18n="nav_about">Tentang</a></li>
             <li><a href="#education" data-i18n="nav_edu">Pendidikan</a></li>
@@ -170,6 +175,7 @@
     </footer>
 </body>
 </html>
+
 document.addEventListener('DOMContentLoaded', () => {
     // Kamus Terjemahan
     const translations = {
@@ -421,6 +427,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Muat bahasa dari preferensi sebelumnya
     const savedLang = localStorage.getItem('language') || 'id';
     setLanguage(savedLang);
+
+    // 6. Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+
+    // Tutup menu saat link diklik (untuk mobile)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
 });
 
 /* Konfigurasi Variabel Warna */
@@ -786,8 +806,80 @@ nav {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .nav-links { display: none; }
     .container { padding: 3rem 5%; }
+
+    /* Mobile Navigation */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 1001;
+        background: none;
+        border: none;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        transition: var(--transition);
+        border-radius: 3px;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 100%;
+        background: var(--nav-bg);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        gap: 2rem;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 0;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+
+    /* Typography Adjustments */
+    .hero h1 {
+        font-size: 2rem;
+        padding: 0 20px;
+    }
+
+    .hero .tagline {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    .skills-grid {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-btns {
+        flex-direction: column;
+        padding: 0 10%;
+    }
+
+    .btn {
+        width: 100%;
+    }
 }
 
 /* Staggered Delay untuk Kartu Portfolio */
