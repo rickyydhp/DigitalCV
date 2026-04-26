@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Profesional & Sistem Informasi</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="foto/favicon.ico">
+    <!-- SEO / Open Graph -->
+    <meta name="description" content="Portfolio Profesional Ricky Yudha Pratama - Mahasiswa Sistem Informasi & Spesialis Manajemen Parkir.">
+    <meta property="og:title" content="Ricky Yudha Pratama | Portfolio">
+    <meta property="og:description" content="Digital CV dan Portfolio Proyek Sistem Informasi.">
+    <meta property="og:image" content="foto/foto_CV.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -66,6 +73,40 @@
                 <h3 data-i18n="edu_smk">Rekayasa Perangkat Lunak</h3>
                 <p class="institution">SMK ASY-SYIFA</p>
                 <p class="period">2018 - 2021</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certificates" class="container">
+        <h2 data-i18n="cert_h2">Sertifikat & Penghargaan</h2>
+        <div class="certificate-grid">
+            <div class="certificate-card" data-cert-img="foto/foto_kompetensi.jpg" title="Klik untuk memperbesar">
+                <img src="foto/foto_kompetensi.jpg" alt="Sertifikat Kompetensi RPL" class="cert-img" loading="lazy">
+                <i class="fas fa-certificate cert-icon"></i>
+                <h3 data-i18n="cert_1_title">Sertifikat Kompetensi RPL</h3>
+                <p class="institution">BNSP / SMK Asy Syifa</p>
+                <p class="period">2021</p>
+            </div>
+            <div class="certificate-card" data-cert-img="foto/foto_gilbencal.jpg" title="Klik untuk memperbesar">
+                <img src="foto/foto_gilbencal.jpg" alt="Sertifikat GULBENCAL" class="cert-img" loading="lazy">
+                <i class="fas fa-hands-helping cert-icon"></i>
+                <h3 data-i18n="cert_2_title">Sertifikat GULBENCAL DEPOK 2020</h3>
+                <p class="institution">Pemerintah Kota Depok</p>
+                <p class="period">2020</p>
+            </div>
+            <div class="certificate-card" data-cert-img="foto/foto_iot.jpg" title="Klik untuk memperbesar">
+                <img src="foto/foto_iot.jpg" alt="Sertifikat Webinar Nasional" class="cert-img" loading="lazy">
+                <i class="fas fa-laptop-code cert-icon"></i>
+                <h3 data-i18n="cert_3_title">Sertifikat Webinar Nasional DCC</h3>
+                <p class="institution">ITBA DCC</p>
+                <p class="period">2024</p>
+            </div>
+            <div class="certificate-card" data-cert-img="foto/piagan.jpg" title="Klik untuk memperbesar">
+                <img src="foto/piagan.jpg" alt="Piagam Penghargaan Relawan" class="cert-img" loading="lazy">
+                <i class="fas fa-medal cert-icon"></i>
+                <h3 data-i18n="cert_4_title">Piagam Penghargaan Relawan Non Nakes</h3>
+                <p class="institution">Polrestro Depok</p>
+                <p class="period">2021</p>
             </div>
         </div>
     </section>
@@ -152,19 +193,22 @@
             <p><i class="fab fa-instagram"></i> <strong>Instagram:</strong> 
                 <a href="https://www.instagram.com/rickyydhp/" target="_blank" rel="noopener noreferrer">@rickyydhp</a>
             </p>
+            <p><i class="fab fa-whatsapp"></i> <strong><span data-i18n="cont_wa">WhatsApp</span>:</strong> 
+                <a href="https://wa.me/6289512417863" target="_blank" rel="noopener noreferrer">0895-1241-7863</a>
+            </p>
         </div>
         <form id="contactForm">
             <div class="form-group">
                 <label for="name" data-i18n="cont_label_name">Nama Lengkap</label>
-                <input type="text" id="name" placeholder="Masukkan nama Anda" required data-i18n="cont_ph_name">
+                <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required data-i18n="cont_ph_name">
             </div>
             <div class="form-group">
                 <label for="email" data-i18n="cont_label_email">Alamat Email</label>
-                <input type="email" id="email" placeholder="email@contoh.com" required data-i18n="cont_ph_email">
+                <input type="email" id="email" name="email" placeholder="email@contoh.com" required data-i18n="cont_ph_email">
             </div>
             <div class="form-group">
                 <label for="message" data-i18n="cont_label_msg">Pesan</label>
-                <textarea id="message" placeholder="Apa yang bisa saya bantu?" required data-i18n="cont_ph_msg"></textarea>
+                <textarea id="message" name="message" placeholder="Apa yang bisa saya bantu?" required data-i18n="cont_ph_msg"></textarea>
             </div>
             <button type="submit" class="btn" data-i18n="cont_btn_send">Kirim Pesan</button>
         </form>
@@ -173,5 +217,20 @@
     <footer>
         <p data-i18n="footer_text">&copy; 2026 RICKY YUDHA PRATAMA. Dibuat Untuk Tugas Web Programming.</p>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Modal Sertifikat -->
+    <div id="certModal" class="modal-overlay">
+        <span class="modal-close">&times;</span>
+        <button class="modal-nav prev" id="modalPrev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+        <img class="modal-content" id="modalImg">
+        <button class="modal-nav next" id="modalNext" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+        <div id="modalCaption"></div>
+        <a id="modalDownload" class="modal-download" download><i class="fas fa-download"></i> Unduh Sertifikat</a>
+    </div>
 </body>
 </html>

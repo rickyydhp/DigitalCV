@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_port: "Proyek",
             nav_contact: "Kontak",
             hero_tagline: "Information Systems Student | Specialist in Parking Management Systems",
-            hero_greeting: "Hallo",
+            hero_greeting: "Halo",
             hero_intro: "perkenalkan saya",
             hero_btn_contact: "Hubungi Saya",
             hero_btn_cv: "Unduh CV (PDF)",
@@ -19,6 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
             edu_s1: "S1 Sistem Informasi",
             edu_s1_period: "2024 - Sekarang",
             edu_smk: "Rekayasa Perangkat Lunak",
+            cert_h2: "Sertifikat & Penghargaan",
+            cert_1_title: "Sertifikat Kompetensi RPL",
+            cert_2_title: "Sertifikat GULBENCAL DEPOK 2020",
+            cert_3_title: "Sertifikat Webinar Nasional DCC",
+            cert_4_title: "Piagam Penghargaan Relawan Non Nakes",
             exp_h2: "Pengalaman Kerja",
             exp_l1: "Mengelola operasional parkir harian dan memastikan kepatuhan ketat terhadap SOP perusahaan.",
             exp_l2: "Mengatur lalu lintas kendaraan dan mengoptimalkan pemanfaatan area parkir.",
@@ -53,7 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
             cont_label_msg: "Pesan",
             cont_ph_msg: "Apa yang bisa saya bantu?",
             cont_btn_send: "Kirim Pesan",
-            footer_text: "© 2026 RICKY YUDHA PRATAMA. Dibuat Untuk Tugas Web Programming."
+            footer_text: "© 2022 RICKY YUDHA PRATAMA. DO NOT COPY THIS WEBSITE.",
+            cont_wa: "WhatsApp"
         },
         en: {
             nav_about: "About",
@@ -73,6 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
             edu_s1: "Bachelor of Information Systems",
             edu_s1_period: "2024 - Present",
             edu_smk: "Software Engineering",
+            cert_h2: "Certificates & Awards",
+            cert_1_title: "Software Engineering Competency Certificate",
+            cert_2_title: "GULBENCAL Depok Certificate 2020",
+            cert_3_title: "DCC National Webinar Certificate",
+            cert_4_title: "Non-Medical Health Volunteer Award",
             exp_h2: "Work Experience",
             exp_l1: "Manage daily parking operations and ensure strict compliance with company SOPs.",
             exp_l2: "Direct vehicle traffic and optimize parking area utilization.",
@@ -107,7 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
             cont_label_msg: "Message",
             cont_ph_msg: "How can I help you?",
             cont_btn_send: "Send Message",
-            footer_text: "© 2026 RICKY YUDHA PRATAMA. Created For Web Programming Assignment."
+            footer_text: "© 2026 RICKY YUDHA PRATAMA. Created For Web Programming Assignment.",
+            cont_wa: "WhatsApp"
         }
     };
 
@@ -155,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     // Mendaftarkan section dan elemen lainnya untuk di-observe
-    document.querySelectorAll('section, .project-card, .timeline-item, .experience-card').forEach(el => {
+    document.querySelectorAll('section, .hero-content > *, .project-card, .timeline-item, .experience-card, .certificate-card').forEach(el => {
         el.classList.add('reveal');
         observer.observe(el);
     });
@@ -174,9 +186,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Simulasi pengiriman berhasil
-        alert(`Terima kasih ${name}, pesan Anda telah terkirim secara profesional!`);
+        // Feedback yang lebih elegan
+        const successMsg = document.createElement('p');
+        successMsg.className = 'form-success';
+        successMsg.textContent = `Terima kasih ${name}, pesan Anda telah terkirim!`;
+        contactForm.appendChild(successMsg);
+        
         contactForm.reset();
+        setTimeout(() => successMsg.remove(), 5000);
     });
 
     // 4. Sistem Filter Portofolio
@@ -237,17 +254,150 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('language') || 'id';
     setLanguage(savedLang);
 
+    // 7. Back to Top Logic
+    const backToTopBtn = document.getElementById('backToTop');
+    window.onscroll = function() {
+        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+            backToTopBtn.style.display = "block";
+        } else {
+            backToTopBtn.style.display = "none";
+        }
+    };
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
     // 6. Mobile Menu Toggle
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        menuToggle.classList.toggle('active');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Tutup menu saat link diklik
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+    }
+
+    // 9. ScrollSpy: Highlight Nav Links on Scroll
+    const navLinksList = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('section');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinksList.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').includes(current)) {
+                link.classList.add('active');
+            }
+        });
     });
 
-    // Tutup menu saat link diklik (untuk mobile)
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => navLinks.classList.remove('active'));
+    // 8. Logika Modal Sertifikat (Gallery Mode)
+    const certModal = document.getElementById('certModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalCaption = document.getElementById('modalCaption');
+    const modalDownload = document.getElementById('modalDownload');
+    const closeModal = document.querySelector('.modal-close');
+    const modalPrev = document.getElementById('modalPrev');
+    const modalNext = document.getElementById('modalNext');
+
+    const certCards = Array.from(document.querySelectorAll('.certificate-card'));
+    let currentCertIndex = 0;
+
+    const updateModal = (index) => {
+        currentCertIndex = index;
+        const card = certCards[currentCertIndex];
+        const imgPath = card.getAttribute('data-cert-img');
+        const title = card.querySelector('h3').textContent;
+        
+        if (modalImg) modalImg.classList.remove('zoomed'); // Reset zoom saat ganti gambar
+        if (imgPath && modalImg) {
+            modalImg.onerror = () => {
+                console.error("Gagal memuat gambar di: " + imgPath);
+                modalCaption.textContent = "Gambar tidak ditemukan: " + title;
+            };
+            modalImg.src = imgPath;
+            modalCaption.textContent = title;
+            if (modalDownload) modalDownload.href = imgPath;
+        }
+    };
+
+    // Fitur Zoom untuk Foto Profil
+    const profileImg = document.querySelector('.profile-img');
+    if (profileImg && certModal) {
+        profileImg.addEventListener('click', () => {
+            certModal.style.display = "block";
+            modalImg.src = profileImg.src;
+            modalCaption.textContent = "Ricky Yudha Pratama";
+            if (modalDownload) modalDownload.href = profileImg.src;
+            modalImg.classList.remove('zoomed');
+            
+            // Sembunyikan navigasi galeri karena ini foto tunggal
+            if (modalPrev) modalPrev.style.display = 'none';
+            if (modalNext) modalNext.style.display = 'none';
+            
+            document.body.style.overflow = "hidden";
+        });
+    }
+
+    certCards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+            certModal.style.display = "block";
+            // Tampilkan kembali tombol navigasi jika sebelumnya disembunyikan oleh foto profil
+            if (modalPrev) modalPrev.style.display = 'flex';
+            if (modalNext) modalNext.style.display = 'flex';
+            updateModal(index);
+            document.body.style.overflow = "hidden"; // Mencegah scroll saat modal buka
+        });
+    });
+
+    const nextCert = () => updateModal((currentCertIndex + 1) % certCards.length);
+    const prevCert = () => updateModal((currentCertIndex - 1 + certCards.length) % certCards.length);
+
+    if (modalNext) modalNext.onclick = (e) => { e.stopPropagation(); nextCert(); };
+    if (modalPrev) modalPrev.onclick = (e) => { e.stopPropagation(); prevCert(); };
+
+    // Fitur Klik Gambar untuk Zoom
+    if (modalImg) {
+        modalImg.addEventListener('click', (e) => {
+            e.stopPropagation(); // Agar tidak menutup modal saat mengklik gambar
+            modalImg.classList.toggle('zoomed');
+        });
+    }
+
+    const closeFn = () => {
+        certModal.style.display = "none";
+        document.body.style.overflow = "auto";
+        if (modalImg) modalImg.classList.remove('zoomed'); // Reset zoom saat tutup
+    };
+
+    if (closeModal) closeModal.onclick = closeFn;
+    certModal.addEventListener('click', (e) => {
+        if (e.target === certModal) closeFn();
+    });
+
+    // Dukungan Navigasi Keyboard
+    window.addEventListener('keydown', (e) => {
+        if (certModal.style.display === "block") {
+            if (e.key === "ArrowRight") nextCert();
+            if (e.key === "ArrowLeft") prevCert();
+            if (e.key === "Escape") closeFn();
+        }
     });
 });
