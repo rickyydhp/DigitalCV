@@ -661,8 +661,9 @@ nav {
     max-width: 800px;
     text-align: center;
     color: #fff;
-    padding: 20px 0;
+    padding: 20px 0 80px 0; /* Tambah padding bawah agar tidak tertutup tombol unduh */
     font-weight: 600;
+    font-size: 1.1rem;
 }
 
 .modal-close {
@@ -674,6 +675,10 @@ nav {
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
+    z-index: 3005;
+    width: 50px;
+    height: 50px;
+    text-align: center;
 }
 
 /* Modal Navigation (Gallery Mode) */

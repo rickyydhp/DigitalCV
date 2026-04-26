@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cont_label_msg: "Pesan",
             cont_ph_msg: "Apa yang bisa saya bantu?",
             cont_btn_send: "Kirim Pesan",
-            footer_text: "© 2026 RICKY YUDHA PRATAMA. Dibuat Untuk Tugas Web Programming.",
+            footer_text: "© 2026 RICKY YUDHA PRATAMA. Hak Cipta Dilindungi.",
             cont_wa: "WhatsApp"
         },
         en: {
@@ -184,8 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = true;
         submitBtn.textContent = "Mengirim...";
 
-        // Kirim ke Formspree (Ganti ID ini setelah daftar di formspree.io)
-        fetch("https://formspree.io/f/YOUR_FORM_ID", {
+        // PENTING: Ganti 'YOUR_FORM_ID' dengan ID dari formspree.io agar pesan masuk ke Gmail
+        fetch("https://formspree.io/f/YOUR_FORM_ID", { 
             method: "POST",
             body: new FormData(contactForm),
             headers: { 'Accept': 'application/json' }
