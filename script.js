@@ -9,10 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_port: "Proyek",
             nav_contact: "Kontak",
             hero_tagline: "Information Systems Student | Specialist in Parking Management Systems",
-            hero_greeting_morning: "Selamat Pagi",
-            hero_greeting_afternoon: "Selamat Siang",
-            hero_greeting_evening: "Selamat Malam",
-            hero_intro: "Saya",
+            hero_greeting: "Hallo",
+            hero_intro: "perkenalkan saya",
             hero_btn_contact: "Hubungi Saya",
             hero_btn_cv: "Unduh CV (PDF)",
             about_h2: "Tentang Saya",
@@ -65,10 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_port: "Projects",
             nav_contact: "Contact",
             hero_tagline: "Information Systems Student | Specialist in Parking Management Systems",
-            hero_greeting_morning: "Good Morning",
-            hero_greeting_afternoon: "Good Afternoon",
-            hero_greeting_evening: "Good Evening",
-            hero_intro: "I am",
+            hero_greeting: "Hello",
+            hero_intro: "let me introduce myself, I am",
             hero_btn_contact: "Contact Me",
             hero_btn_cv: "Download CV (PDF)",
             about_h2: "About Me",
@@ -210,23 +206,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const langBtns = document.querySelectorAll('.lang-btn');
     
     function setLanguage(lang) {
-        const hour = new Date().getHours();
-        let timeSuffix = "evening"; // Default Malam/Evening
-        if (hour >= 5 && hour < 12) timeSuffix = "morning"; // Pagi
-        else if (hour >= 12 && hour < 18) timeSuffix = "afternoon"; // Siang/Sore
-
         document.querySelectorAll('[data-i18n]').forEach(el => {
-            let key = el.getAttribute('data-i18n');
-            
-            // Penanganan khusus untuk sapaan dinamis berdasarkan waktu
-            let translationKey = key;
-            if (key === "hero_greeting") translationKey = `${key}_${timeSuffix}`;
+            const key = el.getAttribute('data-i18n');
 
-            if (translations[lang][translationKey]) {
+            if (translations[lang][key]) {
                 if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    el.placeholder = translations[lang][translationKey];
+                    el.placeholder = translations[lang][key];
                 } else {
-                    el.textContent = translations[lang][translationKey];
+                    el.textContent = translations[lang][key];
                 }
             }
         });
