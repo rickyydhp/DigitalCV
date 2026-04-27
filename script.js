@@ -44,8 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
             soft_l5: "Berpikir analitis",
             port_h2: "Proyek Pilihan",
             port_all: "Semua",
-            port_p1_h3: "Sistem Pelaporan Pendapatan Parkir",
-            port_p1_p: "Aplikasi berbasis web untuk mengotomatisasi laporan keuangan parkir harian, mengurangi kesalahan input manual secara signifikan.",
+            port_p1_h3: "Analisis & Otomasi Alur Pendapatan Parkir",
+            port_p1_p: "Melakukan pemetaan proses bisnis (BPMN) untuk mengidentifikasi kebocoran data pada laporan manual dan merancang solusi otomatisasi pelaporan yang terintegrasi.",
+            port_p1_l1: "Analisis kebutuhan sistem (Requirement Gathering)",
+            port_p1_l2: "Perancangan skema database (ERD)",
             port_p1_dev: "Masih dalam tahap pengembangan",
             port_p2_h3: "Web Personal Branding",
             port_p2_p: "Website portfolio interaktif ini dibangun menggunakan Vanilla CSS dan JavaScript untuk menunjukkan kemampuan front-end.",
@@ -104,8 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
             soft_l5: "Analytical thinking",
             port_h2: "Selected Projects",
             port_all: "All",
-            port_p1_h3: "Parking Revenue Reporting System",
-            port_p1_p: "A web-based application to automate daily parking financial reports, significantly reducing manual input errors.",
+            port_p1_h3: "Parking Revenue Flow Analysis & Automation",
+            port_p1_p: "Conducted business process mapping (BPMN) to identify data leakages in manual reports and designed an integrated reporting automation solution.",
+            port_p1_l1: "System requirements analysis",
+            port_p1_l2: "Database schema design (ERD)",
             port_p1_dev: "Under development",
             port_p2_h3: "Web Personal Branding",
             port_p2_p: "This interactive portfolio website was built using Vanilla CSS and JavaScript to demonstrate front-end skills.",
@@ -266,59 +270,63 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('language') || 'id';
     setLanguage(savedLang);
 
-    // 7. Back to Top Logic
+    // 7. Optimized Scroll Handling (Back to Top & ScrollSpy)
     const backToTopBtn = document.getElementById('backToTop');
-    window.onscroll = function() {
-        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-            backToTopBtn.style.display = "block";
-        } else {
-            backToTopBtn.style.display = "none";
+    const navLinksList = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('header, section');
+
+    let isScrolling = false;
+    window.addEventListener('scroll', () => {
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                const scrollPos = window.scrollY;
+                
+                // Back to top logic
+                if (backToTopBtn) {
+                    backToTopBtn.style.display = scrollPos > 500 ? "block" : "none";
+                }
+
+                // ScrollSpy logic
+                let current = '';
+                sections.forEach(section => {
+                    if (scrollPos >= (section.offsetTop - 250)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navLinksList.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href').includes(current));
+                });
+                
+                isScrolling = false;
+            });
+            isScrolling = true;
         }
-    };
-    backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({top: 0, behavior: 'smooth'});
     });
 
-    // 6. Mobile Menu Toggle
-    const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({top: 0, behavior: 'smooth'});
         });
+    }
 
-        // Tutup menu saat link diklik
-        document.querySelectorAll('.nav-links a').forEach(link => {
+    // 6. Mobile Menu Toggle (Simplified)
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinksContainer = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinksContainer) {
+        const toggleMenu = () => {
+            navLinksContainer.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        };
+
+        menuToggle.addEventListener('click', toggleMenu);
+        navLinksContainer.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
+                navLinksContainer.classList.remove('active');
                 menuToggle.classList.remove('active');
             });
         });
     }
-
-    // 9. ScrollSpy: Highlight Nav Links on Scroll
-    const navLinksList = document.querySelectorAll('.nav-links a');
-    const sections = document.querySelectorAll('header, section');
-
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= (sectionTop - 200)) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinksList.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('active');
-            }
-        });
-    });
 
     // 8. Logika Modal Sertifikat (Gallery Mode)
     const certModal = document.getElementById('certModal');
@@ -336,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentCertIndex = index;
         const card = certCards[currentCertIndex];
         const imgPath = card.getAttribute('data-cert-img');
-        const title = card.querySelector('h3').textContent;
+        const title = card.querySelector('h3').innerText;
         
         if (modalImg) modalImg.classList.remove('zoomed'); // Reset zoom saat ganti gambar
         if (imgPath && modalImg) {
@@ -345,6 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalCaption.textContent = "Gambar tidak ditemukan: " + title;
             };
             modalImg.src = imgPath;
+            modalImg.alt = title; // Aksesibilitas: Tambahkan alt dinamis
             modalCaption.textContent = title;
             if (modalDownload) modalDownload.href = imgPath;
         }
